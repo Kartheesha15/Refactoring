@@ -1,0 +1,62 @@
+Player Stats Analysis
+------------------------
+Player{name='Aaron Jones', team='United States of America', matches=6, innings=6, notOuts=2, runs=162, average=40.5, strikeRate=135.0}
+Player{name='Aasif Sheikh', team='Nepal', matches=3, innings=3, notOuts=0, runs=63, average=21.0, strikeRate=88.73}
+Player{name='MM Ali', team='England', matches=8, innings=5, notOuts=0, runs=71, average=14.2, strikeRate=139.21}
+Player{name='KIC Asalanka', team='Sri Lanka', matches=3, innings=3, notOuts=0, runs=71, average=23.66, strikeRate=139.21}
+Player{name='Ayaan Khan', team='Oman', matches=4, innings=4, notOuts=1, runs=93, average=31.0, strikeRate=97.89}
+Player{name='Babar Azam', team='Pakistan', matches=4, innings=4, notOuts=1, runs=122, average=40.66, strikeRate=101.66}
+Player{name='JM Bairstow', team='England', matches=8, innings=6, notOuts=2, runs=110, average=27.5, strikeRate=134.14}
+Player{name='RD Berrington', team='Scotland', matches=4, innings=3, notOuts=2, runs=102, average=102.0, strikeRate=139.72}
+Player{name='HC Brook', team='England', matches=8, innings=4, notOuts=2, runs=145, average=72.5, strikeRate=157.6}
+Player{name='JC Buttler', team='England', matches=8, innings=7, notOuts=2, runs=214, average=42.8, strikeRate=158.51}
+Player{name='J Charles', team='West Indies', matches=6, innings=6, notOuts=0, runs=140, average=23.33, strikeRate=113.82}
+Player{name='RL Chase', team='West Indies', matches=6, innings=3, notOuts=1, runs=94, average=47.0, strikeRate=130.55}
+Player{name='PJ Cummins', team='Australia', matches=5, innings=3, notOuts=1, runs=14, average=7.0, strikeRate=82.35}
+Player{name='Q de Kock', team='South Africa', matches=9, innings=9, notOuts=0, runs=243, average=27.0, strikeRate=140.46}
+Player{name='S Dube', team='India', matches=8, innings=8, notOuts=2, runs=133, average=22.16, strikeRate=114.65}
+Player{name='MG Erasmus', team='Namibia', matches=4, innings=4, notOuts=1, runs=102, average=34.0, strikeRate=109.67}
+Player{name='AGS Gous', team='United States of America', matches=6, innings=6, notOuts=1, runs=219, average=43.8, strikeRate=151.03}
+Player{name='Gulbadin Naib', team='Afghanistan', matches=8, innings=8, notOuts=1, runs=90, average=12.85, strikeRate=104.65}
+Player{name='TM Head', team='Australia', matches=7, innings=7, notOuts=1, runs=255, average=42.5, strikeRate=158.38}
+Player{name='RR Hendricks', team='South Africa', matches=9, innings=9, notOuts=1, runs=113, average=14.12, strikeRate=87.59}
+Player{name='SD Hope', team='West Indies', matches=3, innings=3, notOuts=1, runs=107, average=53.5, strikeRate=187.71}
+Player{name='Ibrahim Zadran', team='Afghanistan', matches=8, innings=8, notOuts=0, runs=231, average=28.87, strikeRate=107.44}
+Player{name='Iftikhar Ahmed', team='Pakistan', matches=2, innings=2, notOuts=0, runs=23, average=11.5, strikeRate=100.0}
+Player{name='RA Jadeja', team='India', matches=8, innings=5, notOuts=2, runs=35, average=11.66, strikeRate=159.09}
+Player{name='A Johnson', team='Canada', matches=3, innings=3, notOuts=0, runs=89, average=29.66, strikeRate=121.91}
+Player{name='MA Jones', team='Scotland', matches=4, innings=4, notOuts=1, runs=89, average=29.66, strikeRate=134.84}
+Player{name='H Klaasen', team='South Africa', matches=9, innings=8, notOuts=2, runs=190, average=31.66, strikeRate=126.66}
+Player{name='V Kohli', team='India', matches=8, innings=8, notOuts=0, runs=151, average=18.87, strikeRate=112.68}
+Player{name='NR Kumar', team='United States of America', matches=6, innings=5, notOuts=1, runs=99, average=24.75, strikeRate=115.11}
+Player{name='Litton Das', team='Bangladesh', matches=7, innings=7, notOuts=1, runs=139, average=23.16, strikeRate=93.28}
+Player{name='LS Livingstone', team='England', matches=8, innings=4, notOuts=0, runs=72, average=18.0, strikeRate=146.93}
+Player{name='Mahmudullah', team='Bangladesh', matches=7, innings=7, notOuts=1, runs=95, average=15.83, strikeRate=94.05}
+Player{name='AK Markram', team='South Africa', matches=9, innings=9, notOuts=1, runs=123, average=15.37, strikeRate=100.81}
+Player{name='MR Marsh', team='Australia', matches=7, innings=7, notOuts=1, runs=125, average=20.83, strikeRate=116.82}
+Player{name='GJ Maxwell', team='Australia', matches=7, innings=6, notOuts=1, runs=132, average=26.4, strikeRate=141.93}
+Player{name='DA Miller', team='South Africa', matches=9, innings=8, notOuts=2, runs=169, average=28.16, strikeRate=102.42}
+Player{name='Mohammad Rizwan', team='Pakistan', matches=4, innings=4, notOuts=1, runs=110, average=36.66, strikeRate=90.9}
+Player{name='Najmul Hossain Shanto', team='Bangladesh', matches=7, innings=7, notOuts=0, runs=112, average=16.0, strikeRate=95.72}
+Player{name='HH Pandya', team='India', matches=8, innings=6, notOuts=3, runs=144, average=48.0, strikeRate=151.57}
+Player{name='RR Pant', team='India', matches=8, innings=8, notOuts=1, runs=171, average=24.42, strikeRate=127.61}
+Player{name='AR Patel', team='India', matches=8, innings=5, notOuts=1, runs=92, average=23.0, strikeRate=139.39}
+Player{name='N Pooran', team='West Indies', matches=7, innings=7, notOuts=1, runs=228, average=38.0, strikeRate=146.15}
+Player{name='R Powell', team='West Indies', matches=7, innings=6, notOuts=0, runs=102, average=17.0, strikeRate=143.66}
+Player{name='Rahmanullah Gurbaz', team='Afghanistan', matches=8, innings=8, notOuts=0, runs=281, average=35.12, strikeRate=124.33}
+Player{name='SE Rutherford', team='West Indies', matches=7, innings=6, notOuts=3, runs=121, average=40.33, strikeRate=147.56}
+Player{name='PD Salt', team='England', matches=8, innings=7, notOuts=2, runs=188, average=37.6, strikeRate=159.32}
+Player{name='Shakib Al Hasan', team='Bangladesh', matches=7, innings=7, notOuts=1, runs=111, average=18.5, strikeRate=106.73}
+Player{name='RG Sharma', team='India', matches=8, innings=8, notOuts=1, runs=257, average=36.71, strikeRate=156.7}
+Player{name='MP Stoinis', team='Australia', matches=7, innings=5, notOuts=1, runs=169, average=42.25, strikeRate=164.07}
+Player{name='T Stubbs', team='South Africa', matches=9, innings=8, notOuts=3, runs=165, average=33.0, strikeRate=101.22}
+Player{name='Towhid Hridoy', team='Bangladesh', matches=7, innings=7, notOuts=0, runs=153, average=21.85, strikeRate=128.57}
+Player{name='DA Warner', team='Australia', matches=7, innings=7, notOuts=1, runs=178, average=29.66, strikeRate=139.06}
+Player{name='KS Williamson', team='New Zealand', matches=4, innings=3, notOuts=1, runs=28, average=14.0, strikeRate=87.5}
+Player{name='SA Yadav', team='India', matches=8, innings=8, notOuts=1, runs=199, average=28.42, strikeRate=135.37}
+
+Highest Stats
+-------------
+Most Runs: 281 by Rahmanullah Gurbaz
+Highest Average: 102.0 by RD Berrington
+Highest Strike Rate: 187.71 by SD Hope
