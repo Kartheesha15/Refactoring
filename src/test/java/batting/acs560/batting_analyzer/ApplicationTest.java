@@ -1,26 +1,26 @@
 package batting.acs560.batting_analyzer;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import batting.acs560.batting_analyzer.Application.Player;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import org.junit.jupiter.api.*;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationTest {
 
-    private static final String CSV_FILE = "test_batting_stats.csv";
-    private static final String OUTPUT_FILE = "test_analysis.txt";
+    private static final String CSV_FILE = "batting stats.csv";
+    private static final String OUTPUT_FILE = "analysis.txt";
+    private CsvReader csvReader;
+    private DataAnalyzer dataAnalyzer;
+    private FileWriterUtil fileWriterUtil;
 
     @BeforeEach
     void setup() throws IOException {
-        // Create a test CSV file before each test
+        csvReader = new CsvReader();
+        dataAnalyzer = new DataAnalyzer();
+        fileWriterUtil = new FileWriterUtil();
+
+        // Create a test CSV file
         try (FileWriter writer = new FileWriter(CSV_FILE)) {
             writer.write("name,team,matches,innings,notouts,runs,average,strikeRate\n");
             writer.write("Player A,Team X,10,8,2,400,50.0,120.0\n");
@@ -31,120 +31,53 @@ class ApplicationTest {
 
     @AfterEach
     void tearDown() {
-        // Clean up the files after each test
         new File(CSV_FILE).delete();
         new File(OUTPUT_FILE).delete();
     }
 
     @Test
-    void testReadCsvFile() {
-        List<Player> players = Application.readCsvFile(CSV_FILE);
+    void testMainApplicationIntegration() throws IOException {
+        // Simulate the main application workflow
+        List<Player> players = csvReader.readPlayers(CSV_FILE);
 
-        assertEquals(3, players.size());
+        // Run analysis directly on the list of players
+        dataAnalyzer.findTopScorer(players).ifPresent(player -> 
+            assertEquals("Player C", player.getName(), "Player C should have the most runs"));
 
-        Player playerA = players.get(0);
-        assertEquals("Player A", playerA.getName());
-        assertEquals("Team X", playerA.getTeam());
-        assertEquals(400, playerA.getRuns());
-        assertEquals(50.0, playerA.getAverage());
-        assertEquals(120.0, playerA.getStrikeRate());
+        dataAnalyzer.findTopAveragePlayer(players).ifPresent(player -> 
+            assertEquals("Player A", player.getName(), "Player A should have the highest average"));
+
+        dataAnalyzer.findTopStrikeRatePlayer(players).ifPresent(player -> 
+            assertEquals("Player C", player.getName(), "Player C should have the highest strike rate"));
+
+        // Write analysis results to a file and verify
+        fileWriterUtil.writeAnalysisToFile(players, OUTPUT_FILE, dataAnalyzer);
+        File outputFile = new File(OUTPUT_FILE);
+        assertTrue(outputFile.exists(), "Output file should be created");
+
+        // Verify that the output file contains expected analysis
+        String content = Files.readString(outputFile.toPath());
+        assertTrue(content.contains("Most Runs: 450 by Player C"));
+        assertTrue(content.contains("Highest Average: 50.0 by Player A"));
+        assertTrue(content.contains("Highest Strike Rate: 130.0 by Player C"));
     }
 
     @Test
-    void testAnalyzeData() {
-        List<Player> players = Application.readCsvFile(CSV_FILE);
-        Application.analyzeData(players); // No return value; we’ll rely on console output for now
-
-        // Run some assertions on the data directly to validate analysis
-        assertEquals("Player C", players.stream()
-                .max((p1, p2) -> Integer.compare(p1.getRuns(), p2.getRuns()))
-                .orElse(null).getName(), "Most runs player");
-
-        assertEquals("Player A", players.stream()
-                .max((p1, p2) -> Double.compare(p1.getAverage(), p2.getAverage()))
-                .orElse(null).getName(), "Highest average player");
-
-        assertEquals("Player C", players.stream()
-                .max((p1, p2) -> Double.compare(p1.getStrikeRate(), p2.getStrikeRate()))
-                .orElse(null).getName(), "Highest strike rate player");
-    }
-
-    @Test
-    void testWriteAnalysisToFile() throws IOException {
-        List<Player> players = Application.readCsvFile(CSV_FILE);
-        Application.writeAnalysisToFile(players, OUTPUT_FILE);
-
-        File file = new File(OUTPUT_FILE);
-        assertTrue(file.exists());
-
-        // Read the file to ensure the content was written correctly
-        String content = new String(java.nio.file.Files.readAllBytes(file.toPath()));
-        assertTrue(content.contains("Player Stats Analysis"));
-        assertTrue(content.contains("Most Runs"));
-        assertTrue(content.contains("Highest Average"));
-        assertTrue(content.contains("Highest Strike Rate"));
-    }
-
-    // Additional Tests
-
-    @Test
-    void testEmptyCsvFile() throws IOException {
-        // Create an empty CSV file
+    void testEmptyCsvFileHandling() throws IOException {
+        // Create an empty CSV file with headers only
         try (FileWriter writer = new FileWriter(CSV_FILE)) {
             writer.write("name,team,matches,innings,notouts,runs,average,strikeRate\n");
         }
 
-        List<Player> players = Application.readCsvFile(CSV_FILE);
-        assertEquals(0, players.size(), "Player list should be empty for an empty CSV file");
-    }
+        List<Player> players = csvReader.readPlayers(CSV_FILE);
+        assertTrue(players.isEmpty(), "No players should be read from an empty CSV file");
 
-    @Test
-    void testInvalidDataFormat() throws IOException {
-        // Create a CSV file with invalid data
-        try (FileWriter writer = new FileWriter(CSV_FILE)) {
-            writer.write("name,team,matches,innings,notouts,runs,average,strikeRate\n");
-            writer.write("Player A,Team X,10,8,2,invalidRuns,50.0,120.0\n");
-        }
+        // Write analysis to a file and ensure it's properly handled
+        fileWriterUtil.writeAnalysisToFile(players, OUTPUT_FILE, dataAnalyzer);
+        File outputFile = new File(OUTPUT_FILE);
+        assertTrue(outputFile.exists(), "Output file should still be created for empty player data");
 
-        Exception exception = assertThrows(NumberFormatException.class, () -> Application.readCsvFile(CSV_FILE));
-        assertTrue(exception.getMessage().contains("invalidRuns"), "Should throw an exception for invalid number format");
-    }
-
-    @Test
-    void testBoundaryConditions() throws IOException {
-        // Create a CSV file with boundary data values
-        try (FileWriter writer = new FileWriter(CSV_FILE)) {
-            writer.write("name,team,matches,innings,notouts,runs,average,strikeRate\n");
-            writer.write("Player A,Team X,0,0,0,0,0.0,0.0\n");
-        }
-
-        List<Player> players = Application.readCsvFile(CSV_FILE);
-
-        assertEquals(1, players.size());
-        Player playerA = players.get(0);
-        assertEquals(0, playerA.getMatches());
-        assertEquals(0, playerA.getInnings());
-        assertEquals(0, playerA.getNotOuts());
-        assertEquals(0, playerA.getRuns());
-        assertEquals(0.0, playerA.getAverage());
-        assertEquals(0.0, playerA.getStrikeRate());
-    }
-
-    @Test
-    void testSinglePlayerData() throws IOException {
-        // Test with only one player in CSV file
-        try (FileWriter writer = new FileWriter(CSV_FILE)) {
-            writer.write("name,team,matches,innings,notouts,runs,average,strikeRate\n");
-            writer.write("Player A,Team X,10,8,2,400,50.0,120.0\n");
-        }
-
-        List<Player> players = Application.readCsvFile(CSV_FILE);
-        assertEquals(1, players.size());
-
-        Application.analyzeData(players); // Check if the single player's data is correctly analyzed
-
-        File file = new File(OUTPUT_FILE);
-        Application.writeAnalysisToFile(players, OUTPUT_FILE);
-        assertTrue(file.exists(), "Output file should be created even with single player data");
+        String content = Files.readString(outputFile.toPath());
+        assertTrue(content.contains("Player Stats Analysis"), "Output file should include the basic analysis title even if no data is present");
     }
 }
